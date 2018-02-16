@@ -1,7 +1,9 @@
 package StockManagement;
 
+import DesignPatternsExercise.DesignPatternsExercise.Repository;
+
 public interface Manager {
 
 	
-		int update(int stock);
+		void update(Repository repo);
 }

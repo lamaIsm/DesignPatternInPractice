@@ -8,30 +8,34 @@ import StockManagement.StockManager;
 
 public class AssembleComputerComponents extends ComputerBuilder{
 	
-	Manager manager = new StockManager();
-
+	private Manager manager = new StockManager();
+	Repository repo;
+	
+	 public AssembleComputerComponents(Repository repo) {
+		this.repo = repo;
+	}
 	
 	@Override
 	public void buildCPU() {
-		CPU cpu = new CPU();
+		CPU cpu = repo.getCpuRepo().get(0) ;
+		repo.getCpuRepo().remove(0);
 		list.add(cpu);
-		
-		cpu.stock--;
-		cpu.register(manager);
-		if(cpu.stock < 100) {
-			cpu.notifyObserver();
+	
+		repo.register(manager);
+		if(repo.getCpuRepo().size() < 100) {
+			repo.notifyObserver();
 		}
 }
 
 	@Override
 	public void buildMemory() {
-		Memory memory = new Memory();
+		Memory memory = repo.getMemoryRepo().get(0);
+		repo.getMemoryRepo().remove(0);
 		list.add(memory);
 
-		memory.stock--;
-		memory.register(manager);
-		if(memory.stock < 100) {
-			memory.notifyObserver();
+		repo.register(manager);
+		if(repo.getMemoryRepo().size() < 100) {
+			repo.notifyObserver();
 		}
 	}
 
@@ -54,82 +58,68 @@ public class AssembleComputerComponents extends ComputerBuilder{
 	}
 
 
-//	public void checkStock(Components c) {
-//		
-//			c.stock--;
-//			c.register(manager);
-//			if(c.stock < 100) {
-//				c.notifyObserver();
-//			}
-//	}
-//	
-
 	public void buildMouse() {
 		
-		Mouse mouse = new Mouse();
-		
+		Mouse mouse = repo.getMouseRepo().get(0);
+		repo.getMouseRepo().remove(0);
 		list.add(mouse);
 
-		mouse.stock--;
-		mouse.register(manager);
-		if(mouse.stock < 100) {
-			mouse.notifyObserver();
+		repo.register(manager);
+		if(repo.getMouseRepo().size() < 100) {
+			repo.notifyObserver();
 		}
 	}
 	
 	
 	public void buildDisplay() {
 		
-		Display display = new Display();
-		
+		Display display = repo.getDisplayRepo().get(0);
+		repo.getDisplayRepo().remove(0);
 		list.add(display);
 	
-		
-		display.stock--;
-		display.register(manager);
-		if(display.stock < 100) {
-			display.notifyObserver();
+
+		repo.register(manager);
+		if(repo.getDisplayRepo().size() < 100) {
+			repo.notifyObserver();
 		}
 	}
 		
 	public void buildKey() {
-		KeyBoard key = new KeyBoard();
-		
+		KeyBoard key = repo.getKeyboardRepo().get(0);
+		repo.getKeyboardRepo().remove(0);
 		list.add(key);
 	
 		
-		key.stock--;
-		key.register(manager);
-		if(key.stock < 100) {
-			key.notifyObserver();
+		repo.register(manager);
+		if(repo.getKeyboardRepo().size()< 100) {
+			repo.notifyObserver();
 		}
 		
 	}
 	
 	public void buildGPU() {
-		GPU gpu = new GPU();
-		
+		GPU gpu =repo.getGpuRepo().get(0);
+		repo.getGpuRepo().remove(0);
 		list.add(gpu);
 	
-		
-		gpu.stock--;
-		gpu.register(manager);
-		if(gpu.stock < 100) {
-			gpu.notifyObserver();
+
+		repo.register(manager);
+		if(repo.getGpuRepo().size()< 100) {
+			repo.notifyObserver();
 		}
 			
 	}
 	
 	public void buildGraphicsMemory() {
 		
-		GraphicsMemory gMemory  = new GraphicsMemory();
-		
+		GraphicsMemory gMemory  = repo.getGraphicsMemoryRepo().get(0);
+		repo.getGraphicsMemoryRepo().remove(0);
 		list.add(gMemory);
 		
-		gMemory.stock--;
-		gMemory.register(manager);
-		if(gMemory.stock < 100) {
-			gMemory.notifyObserver();
+	
+		repo.register(manager);
+		if(repo.getGraphicsMemoryRepo().size() < 100) {
+			repo.notifyObserver();
 		}
 	}
 }

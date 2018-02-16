@@ -1,8 +1,16 @@
 package CustomizeComputers;
 
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.mail.MessagingException;
+
 import DesignPatternsExercise.DesignPatternsExercise.KeyBoard;
 
-public class Order {
+public class Order implements IOrder{
+	
+
 	
 
 	int nbOfCPU;
@@ -18,7 +26,13 @@ public class Order {
 	
 	TYPE type;
 	
-	public Order(TYPE type, int nbOfCPU, int nbOfDisplay, int nbOfMouse, int nbOfMemory, int nbOfGraphicsCard , int nbOfKeyboard) {
+	State currentState;
+	
+	Client client;
+	
+	
+	public Order(Client client,TYPE type, int nbOfCPU, int nbOfDisplay, int nbOfMouse, int nbOfMemory, int nbOfGraphicsCard , int nbOfKeyboard) {
+		this.client = client;
 		this.type = type;
 		this.nbOfCPU = nbOfCPU;
 		this.nbOfDisplay = nbOfDisplay;
@@ -32,40 +46,24 @@ public class Order {
 		return nbOfCPU;
 	}
 
-	public void setNbOfCPU(int nbOfCPU) {
-		this.nbOfCPU = nbOfCPU;
-	}
 
 	public int getNbOfDisplay() {
 		return nbOfDisplay;
 	}
 
-	public void setNbOfDisplay(int nbOfDisplay) {
-		this.nbOfDisplay = nbOfDisplay;
-	}
 
 	public int getNbOfMouse() {
 		return nbOfMouse;
 	}
 
-	public void setNbOfMouse(int nbOfMouse) {
-		this.nbOfMouse = nbOfMouse;
-	}
 
 	public int getNbOfMemory() {
 		return nbOfMemory;
 	}
 
-	public void setNbOfMemory(int nbOfMemory) {
-		this.nbOfMemory = nbOfMemory;
-	}
 
 	public int getNbOfGraphicsCard() {
 		return nbOfGraphicsCard;
-	}
-
-	public void setNbOfGraphicsCard(int nbOfGraphicsCard) {
-		this.nbOfGraphicsCard = nbOfGraphicsCard;
 	}
 
 	
@@ -85,4 +83,36 @@ public class Order {
 		return true;
 	}
 	
+	
+	public void setState(State state) {
+		this.currentState = state;
+	}
+
+	public State getState() {
+
+		return currentState;
+	}
+	
+	 public void nextState() {
+	        currentState.nextState(this);
+	    }
+
+
+	@Override
+	public void notifyClientObserver(){
+	
+			client.sendEmail(client.getEmail());
+		
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setC(Client client) {
+		this.client = client;
+	}
+	
+	 
+	 
 }

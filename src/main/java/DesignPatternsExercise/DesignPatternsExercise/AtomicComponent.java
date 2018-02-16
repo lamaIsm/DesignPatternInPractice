@@ -1,7 +1,7 @@
 package DesignPatternsExercise.DesignPatternsExercise;
 
 
-public abstract class AtomicComponent  extends Components{ //change to interface
+public abstract class AtomicComponent  extends Components{
 	
 	private double price;
 	

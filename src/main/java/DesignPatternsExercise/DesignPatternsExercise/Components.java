@@ -1,13 +1,11 @@
 package DesignPatternsExercise.DesignPatternsExercise;
 
-public abstract class Components implements Repository {
+public abstract class Components {
 
-	public int stock;
 
 	abstract double getTax(IComponentVisitor visitor);
 
 	abstract double getPrice();
 
-	abstract int getStock();
 
 }
